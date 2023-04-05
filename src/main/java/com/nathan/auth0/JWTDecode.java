@@ -11,9 +11,9 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 public class JWTDecode {
 
-    private static final String SECRET = "baeldung";
-    private static final String ISSUER = "Baeldung";
-    private static final String SUBJECT = "Baeldung Details";
+    private static final String SECRET = "jake";
+    private static final String ISSUER = "Nathan";
+    private static final String SUBJECT = "My JWT Test";
     private static final long TOKEN_VALIDITY_IN_MILLIS = 500L;
 
     private static Algorithm algorithm;
@@ -68,6 +68,7 @@ public class JWTDecode {
         initialize();
 
         String jwtToken = createJWT();
+        //jwtToken = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJOYXRoYW4iLCJzdWIiOiJNeSBKV1QgVGVzdCIsIm5hbWUiOiJOYXRoYW4gQ2hhbmRpciIsInNjb3BlIjoiYWRtaW5zIiwiaWF0IjoxNDY2Nzk2ODIyLCJleHAiOjQ2MjI0NzA0MjJ9.u5qiIjtAX2U7TWTPlaXZvtIQxNG4OJv7YuRxoBCQprI";
         System.out.println("Created JWT : " + jwtToken);
 
         Thread.sleep(1000L);
@@ -81,6 +82,12 @@ public class JWTDecode {
         if (decodedJWT != null) {
             System.out.println("Token Issued At : " + decodedJWT.getIssuedAt());
             System.out.println("Token Expires At : " + decodedJWT.getExpiresAt());
+            System.out.println("Subject : " + decodedJWT.getSubject());
+            System.out.println("Header : " + decodedJWT.getHeader());
+            System.out.println("Payload : " + decodedJWT.getPayload());
+            System.out.println("Signature : " + decodedJWT.getSignature());
+            System.out.println("Algorithm : " + decodedJWT.getAlgorithm());
+            System.out.println("JWT Id : " + decodedJWT.getId());
 
             Boolean isExpired = isJWTExpired(decodedJWT);
             System.out.println("Is Expired : " + isExpired);
