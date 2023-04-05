@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.nathan'
+version = '0.0.1.0'
+description = 'jwt'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    implementation 'com.auth0:java-jwt:4.2.1'
+	testImplementation group: 'junit', name: 'junit', version: '4.13'
+	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.6.6'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-Werror']
+}
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
